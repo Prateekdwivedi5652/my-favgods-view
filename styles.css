@@ -1,3 +1,4 @@
+
 * {
   margin:0px;
   padding:0px;
@@ -15,3 +16,68 @@ p {
   margin: 50px auto;
   font: 30px Monaco,"Courier New","DejaVu Sans Mono","Bitstream Vera Sans Mono",monospace;
 }
+const data = {
+  mainTitle: "My Favourite Gods",
+  cardContents: [
+    {
+      name: "Shri Ganesha",
+      imageLink:
+        "https://images.unsplash.com/photo-1567591370504-80142b28f1c1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=408&q=80",
+    },
+    {
+      name: "Mahadev",
+      imageLink:
+        "https://images.unsplash.com/photo-1566890910598-c5768889e83e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80",
+    },
+    {
+      name: "Kartikeya",
+      imageLink:
+        "https://images.unsplash.com/photo-1561176162-0b01b0df76ed?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=266&q=80",
+    },
+    {
+      name: "Ma Parvati",
+      imageLink:
+        "https://images.unsplash.com/photo-1519396207177-9051cfacb289?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
+    },
+  ],
+  userData: { name: "Crio.Do", tagLine: "Baby steps into the world of web!" },
+};
+
+
+// Plug in title data to HTML
+let mainTitleElement = document.getElementById("main-title");
+mainTitleElement.innerHTML += data.mainTitle;
+
+
+// Create template for card content
+let getCardStructure = (name, imageLink) => {
+  return `<div class="col-12 col-sm-6 mb-4">
+  <div class="tile">
+    <div class="tile-text text-center">
+      <h5>${name}</h5>
+    </div>
+    <img 
+      src="${imageLink}" />
+  </div>
+</div>`;
+};
+
+let cardRow = document.getElementById("card-row");
+
+// Plug in card data to HTML
+data.cardContents.forEach((cardContent) => {
+  let { name, imageLink } = cardContent;
+  cardRow.innerHTML += getCardStructure(name, imageLink);
+});
+
+// Create template for footer content
+let getFooterStructure = (name, tagLine) => {
+  return `<h3 class="me-3"><i class="fas fa-heart"></i> ${name}</h3>
+    <p>${tagLine}</p>`;
+};
+
+let footerContent = document.getElementById("footer");
+let { name, tagLine } = data.userData;
+
+// Plug in footer data to HTML
+footerContent.innerHTML += getFooterStructure(name, tagLine);
